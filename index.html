@@ -710,7 +710,7 @@ footer .dot:hover{ opacity:1; transform:scale(1.6); }
 /* ================= CONFIG — fill these in, see setup notes ================= */
 const SUPABASE_URL = 'https://ekirikajpqmtzzfaijme.supabase.co';           // e.g. https://xxxx.supabase.co
 const SUPABASE_ANON_KEY = 'sb_publishable_SkMeW54lx57ULABJDoL79w_2ES75R8f';  // Project Settings → API → anon public key
-const AI_FUNCTION_URL = 'YOUR_EDGE_FUNCTION_URL';    // e.g. https://xxxx.supabase.co/functions/v1/reflect
+const AI_FUNCTION_URL = 'https://ekirikajpqmtzzfaijme.supabase.co/functions/v1/reflect';    // e.g. https://xxxx.supabase.co/functions/v1/reflect
 const sb = (SUPABASE_URL.startsWith('http')) ? supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY) : null;
 let currentUser = null; // { id, email, name }
 
