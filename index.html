@@ -78,7 +78,7 @@ button{font-family:inherit; background:none; border:none; color:inherit; cursor:
 /* HOME */
 #home{
   position:relative; overflow:hidden;
-  background: linear-gradient(180deg, var(--ink) 0, var(--ink) 97vh, #201f1a 103vh, #141210 116vh, #141210 520vh);
+  background: linear-gradient(180deg, var(--ink) 0%, var(--ink) 22%, #3a372e 32%, #201f1a 42%, #171512 52%, #141210 62%, #141210 100%);
 }
 /* organic, silk / poured-milk background wash — irregular, asymmetric, slow-moving */
 .organic-wash{ position:absolute; top:0; left:0; width:100%; height:118vh; z-index:0; pointer-events:none; overflow:hidden; }
@@ -178,12 +178,12 @@ button{font-family:inherit; background:none; border:none; color:inherit; cursor:
   transition:background .4s var(--ease), color .4s var(--ease), transform .4s var(--ease);
 }
 .start-btn:hover{ background:var(--bone); color:var(--ink); transform:translateY(-2px); }
-.auth-welcome{ display:none; flex-direction:column; align-items:center; gap:8px; }
+.auth-welcome{ display:none; flex-direction:column; align-items:center; gap:20px; }
 .welcome-line{ font-family:'Fraunces',serif; font-style:italic; font-size:clamp(18px,2.4vw,24px); color:var(--bone); transition:font-size .7s var(--ease), letter-spacing .7s var(--ease); }
 .welcome-line b{ font-weight:500; font-style:normal; }
-.welcome-sub{ font-size:12px; letter-spacing:.08em; color:var(--bone-dim); opacity:0; animation:fadeUp .8s var(--ease) .35s forwards; }
-.welcome-actions{ display:flex; gap:22px; margin-top:16px; opacity:0; animation:fadeUp .8s var(--ease) .5s forwards; }
-.w-link{ font-size:11px; letter-spacing:.2em; text-transform:uppercase; border-bottom:1px solid var(--bone); padding-bottom:3px; color:var(--bone); transition:opacity .3s var(--ease); }
+.welcome-sub{ font-size:14px; letter-spacing:.08em; color:var(--bone-dim); opacity:0; animation:fadeUp .8s var(--ease) .35s forwards; }
+.welcome-actions{ display:flex; gap:30px; margin-top:6px; opacity:0; animation:fadeUp .8s var(--ease) .5s forwards; }
+.w-link{ font-size:12.5px; letter-spacing:.22em; text-transform:uppercase; border-bottom:1px solid var(--bone); padding-bottom:4px; color:var(--bone); transition:opacity .3s var(--ease); }
 .w-link.ghost{ border-color:var(--clay); color:var(--clay); }
 .w-link:hover{ opacity:.6; }
 
@@ -268,6 +268,17 @@ body.authed .welcome-line b{ color:var(--wine-bright); }
 }
 .ai-btn:hover{ background:#f2ece0; color:#141210; border-color:#f2ece0; }
 .ai-again{ margin-top:36px; font-size:10px; padding:11px 26px; opacity:.7; }
+.ai-arrow{ display:inline-block; transition:transform .35s var(--ease); }
+.ai-btn:hover .ai-arrow{ transform:translateX(4px); }
+.ai-suggestions{
+  display:flex; flex-wrap:wrap; justify-content:center; gap:12px; margin-top:42px; max-width:620px;
+}
+.ai-suggest-btn{
+  font-family:'Fraunces',serif; font-style:italic; font-weight:300; font-size:12.5px; line-height:1.4;
+  color:#c9bfae; border:1px solid rgba(242,236,224,0.18); border-radius:22px; padding:10px 18px;
+  cursor:none; transition:color .3s var(--ease), border-color .3s var(--ease), background .3s var(--ease);
+}
+.ai-suggest-btn:hover{ color:#f2ece0; border-color:rgba(242,236,224,0.55); background:rgba(242,236,224,0.06); }
 .ai-motif{ display:none; flex-direction:column; align-items:center; gap:16px; margin-top:34px; }
 .ai-motif.active{ display:flex; }
 .ai-dots{ display:flex; gap:9px; }
@@ -291,7 +302,7 @@ body.authed .welcome-line b{ color:var(--wine-bright); }
 }
 
 /* directory */
-.directory{ position:relative; background:#141210; }
+.directory{ position:relative; }
 .dir-grid{
   display:grid; grid-template-columns:1fr 1fr; min-height:100vh;
 }
@@ -451,7 +462,7 @@ body.authed .welcome-line b{ color:var(--wine-bright); }
 .lightbox img{ max-width:90vw; max-height:88vh; object-fit:contain; }
 .lightbox .close-x{ position:fixed; top:30px; right:40px; font-size:12px; letter-spacing:.2em; text-transform:uppercase; }
 
-.empty-state{ color:var(--clay); font-family:'Fraunces',serif; font-style:italic; font-size:16px; padding:40px 0; }
+.empty-state{ color:var(--clay); font-family:'Fraunces',serif; font-style:italic; font-size:16px; padding:40px 0; column-span:all; width:100%; text-align:center; }
 .empty-cta{ font-family:'Inter',sans-serif; font-style:normal; font-size:11px; letter-spacing:.2em; text-transform:uppercase; border-bottom:1px solid var(--bone); padding-bottom:2px; margin-left:6px; cursor:none; }
 
 footer{
@@ -501,6 +512,9 @@ footer .dot:hover{ opacity:1; transform:scale(1.6); }
 }
 .admin-list-item .li-main{ font-size:13px; color:var(--bone-dim); }
 .admin-list-item .li-main b{ color:var(--bone); font-weight:500; }
+.admin-list-item .li-actions{ display:flex; gap:18px; flex-shrink:0; }
+.admin-list-item .edit-btn{ font-size:11px; letter-spacing:.15em; text-transform:uppercase; color:var(--bone-dim); transition:color .3s var(--ease); }
+.admin-list-item .edit-btn:hover{ color:var(--bone); }
 .admin-list-item .del-btn{ font-size:11px; letter-spacing:.15em; text-transform:uppercase; color:var(--wine-bright); flex-shrink:0; }
 .admin-note{ font-size:12px; color:var(--clay); margin-bottom:30px; max-width:560px; line-height:1.7; }
 .toast{
@@ -523,6 +537,7 @@ footer .dot:hover{ opacity:1; transform:scale(1.6); }
     <a href="#objects" data-nav>Objects</a>
     <a href="#gallery" data-nav>Gallery</a>
     <a href="#works" data-nav>Works</a>
+    <a href="#" id="navReflect">Reflect</a>
   </div>
 </nav>
 
@@ -570,14 +585,22 @@ footer .dot:hover{ opacity:1; transform:scale(1.6); }
       <div class="glow" id="transGlow"></div>
       <div class="ai-panel" id="aiPanel">
         <span class="ai-eyebrow">A Moment, Considered</span>
-        <h2 id="aiPrompt">Everything you've written and made is a kind of mirror. Want a closer look?</h2>
-        <button class="ai-btn" id="aiAskBtn">Ask</button>
+        <h2 id="aiPrompt">BERRIE doesn&rsquo;t tell you who you are. It helps you notice.</h2>
+        <button class="ai-btn" id="aiAskBtn">Reflect <span class="ai-arrow">&rarr;</span></button>
         <div class="ai-motif" id="aiMotif">
           <div class="ai-dots" id="aiDots"><span></span><span></span><span></span></div>
-          <span class="ai-loading-text" id="aiLoadingText">Reading through the archive…</span>
+          <span class="ai-loading-text" id="aiLoadingText">Sitting with what you've made…</span>
           <div class="ai-result" id="aiResult"></div>
         </div>
-        <button class="ai-btn ai-again" id="aiAgainBtn" style="display:none;">Ask Again</button>
+        <button class="ai-btn ai-again" id="aiAgainBtn" style="display:none;">Reflect Again</button>
+        <div class="ai-suggestions" id="aiSuggestions">
+          <button class="ai-suggest-btn" data-q="What have I been drawn to lately?">What have I been drawn to lately?</button>
+          <button class="ai-suggest-btn" data-q="What keeps appearing in my Berrie?">What keeps appearing in my Berrie?</button>
+          <button class="ai-suggest-btn" data-q="Show me something I might have forgotten.">Show me something I might have forgotten.</button>
+          <button class="ai-suggest-btn" data-q="What has changed since I started?">What has changed since I started?</button>
+          <button class="ai-suggest-btn" data-q="Connect three things I wouldn't have connected.">Connect three things I wouldn&rsquo;t have connected.</button>
+          <button class="ai-suggest-btn" data-q="Tell me a story hidden in my Berrie.">Tell me a story hidden in my Berrie.</button>
+        </div>
       </div>
     </div>
 
@@ -725,6 +748,20 @@ footer .dot:hover{ opacity:1; transform:scale(1.6); }
   </div>
 </div>
 
+<!-- EDIT MODAL -->
+<div class="auth-modal" id="editModal">
+  <div class="auth-backdrop" id="editBackdrop"></div>
+  <div class="auth-panel">
+    <button class="cm-close" id="editClose">&times;</button>
+    <p class="auth-tagline">Edit this entry. Changes save to your account.</p>
+    <form id="editForm">
+      <div id="editFieldsContainer" style="display:flex; flex-direction:column; gap:16px;"></div>
+      <button class="submit-btn" type="submit" style="margin-top:16px;">Save Changes</button>
+    </form>
+    <div class="auth-msg" id="editMsg"></div>
+  </div>
+</div>
+
 <!-- ADMIN PANEL -->
 <div id="admin">
   <div class="section-head">
@@ -791,10 +828,10 @@ window.addEventListener('mousemove', e=>{ mx=e.clientX; my=e.clientY; dot.style.
 function tick(){ cx+=(mx-cx)*0.18; cy+=(my-cy)*0.18; cursor.style.left=cx+'px'; cursor.style.top=cy+'px'; requestAnimationFrame(tick); }
 tick();
 document.addEventListener('mouseover', e=>{
-  if(e.target.closest('a,button,.word-item,.dir-tile,.work-card,.mag-card,.gallery-grid img,.obj-row,.admin-tab,.cm-close,.cm-arrow,.cm-backdrop')) cursor.classList.add('hover');
+  if(e.target.closest('a,button,.word-item,.dir-tile,.work-card,.mag-card,.gallery-grid img,.obj-row,.admin-tab,.cm-close,.cm-arrow,.cm-backdrop,.ai-suggest-btn,.edit-btn')) cursor.classList.add('hover');
 });
 document.addEventListener('mouseout', e=>{
-  if(e.target.closest('a,button,.word-item,.dir-tile,.work-card,.mag-card,.gallery-grid img,.obj-row,.admin-tab,.cm-close,.cm-arrow,.cm-backdrop')) cursor.classList.remove('hover');
+  if(e.target.closest('a,button,.word-item,.dir-tile,.work-card,.mag-card,.gallery-grid img,.obj-row,.admin-tab,.cm-close,.cm-arrow,.cm-backdrop,.ai-suggest-btn,.edit-btn')) cursor.classList.remove('hover');
 });
 
 /* transition panel glow follows scroll-relative mouse */
@@ -849,6 +886,18 @@ function route(){
 }
 window.addEventListener('hashchange', route);
 route();
+
+/* REFLECT nav: bring user home, then glide down to the reflection panel */
+document.getElementById('navReflect').addEventListener('click', e=>{
+  e.preventDefault();
+  const goToPanel=()=>document.getElementById('transPanel').scrollIntoView({behavior:'smooth', block:'start'});
+  if((location.hash||'#home')!=='#home'){
+    location.hash='#home';
+    setTimeout(goToPanel, 380);
+  } else {
+    goToPanel();
+  }
+});
 
 /* ---------------- auth ---------------- */
 const authModal=document.getElementById('authModal');
@@ -1035,12 +1084,14 @@ const aiMotif=document.getElementById('aiMotif');
 const aiDots=document.getElementById('aiDots');
 const aiResult=document.getElementById('aiResult');
 const aiLoadingText=document.getElementById('aiLoadingText');
-const loadingPhrases=['Reading through the archive…','Looking for a pattern…','Sitting with it for a second…'];
+const aiSuggestions=document.getElementById('aiSuggestions');
+const loadingPhrases=['Sitting with what you\'ve made…','Looking for a thread…','Listening for a pattern…'];
 
-async function runAiReflection(){
+async function runAiReflection(question){
   if(!currentUser){ openAuthModal('signup'); return; }
   aiAskBtn.style.display='none';
   aiAgainBtn.style.display='none';
+  aiSuggestions.style.display='none';
   aiMotif.classList.add('active');
   aiDots.classList.remove('settled');
   aiLoadingText.style.opacity='1';
@@ -1064,17 +1115,19 @@ async function runAiReflection(){
     const perspective=(await loadEntries('perspective')).sort((a,b)=>b.date-a.date).slice(0,8);
     const works=(await loadEntries('works')).sort((a,b)=>b.date-a.date).slice(0,6);
     const objects=(await loadEntries('objects')).sort((a,b)=>b.date-a.date).slice(0,8);
+    const gallery=(await loadEntries('gallery')).sort((a,b)=>b.date-a.date).slice(0,10);
 
-    if(!perspective.length && !works.length && !objects.length){
-      finish("There's nothing here yet to reflect back to you. Write a little, add a few things — then ask again.");
+    if(!perspective.length && !works.length && !objects.length && !gallery.length){
+      finish("There's nothing here yet to notice. Leave something behind, then come back.");
       return;
     }
 
     const material = [
       ...perspective.map(e=>`Perspective note "${e.title}": ${e.text}`),
       ...works.map(e=>`Work "${e.title}": ${e.text}`),
-      ...objects.map(e=>`Object "${e.name}" (${e.category}): ${e.note}`)
-    ].join('\n');
+      ...objects.map(e=>`Object "${e.name}" (${e.category}): ${e.note}`),
+      gallery.length ? `Gallery holds ${gallery.length} images, most recently added ${fmtDate(gallery[0].date)}.` : ''
+    ].filter(Boolean).join('\n');
 
     if(!AI_FUNCTION_URL.startsWith('http')) throw new Error('AI function not configured');
     const ctrl = new AbortController();
@@ -1082,43 +1135,53 @@ async function runAiReflection(){
     const headers = { "Content-Type":"application/json" };
     if(sb){ const { data:{ session } } = await sb.auth.getSession(); if(session) headers.Authorization = 'Bearer '+session.access_token; }
     const response = await fetch(AI_FUNCTION_URL, {
-      method:"POST", headers, body: JSON.stringify({ material, name: currentUser.name }), signal: ctrl.signal
+      method:"POST", headers, body: JSON.stringify({
+        material, name: currentUser.name, question: question || null,
+        tone: 'gentle, quiet, a little mysterious',
+        style: 'Keep it short — 2 to 4 sentences. No long analysis, no lists. Speak like someone noticing something true about a person, not explaining it. Focus on their inner world, not the objects themselves.'
+      }), signal: ctrl.signal
     });
     clearTimeout(timer);
     if(!response.ok) throw new Error('server responded '+response.status);
     const data = await response.json();
     const text = (data.text||'').trim();
-    finish(text || localReflection(perspective, works, objects));
+    finish(text || localReflection(perspective, works, objects, gallery, question));
   }catch(err){
     console.error(err);
     const perspective=(await loadEntries('perspective')).sort((a,b)=>b.date-a.date).slice(0,6);
     const works=(await loadEntries('works')).sort((a,b)=>b.date-a.date).slice(0,4);
     const objects=(await loadEntries('objects')).sort((a,b)=>b.date-a.date).slice(0,6);
-    finish(localReflection(perspective, works, objects));
+    const gallery=(await loadEntries('gallery')).sort((a,b)=>b.date-a.date).slice(0,6);
+    finish(localReflection(perspective, works, objects, gallery, question));
   }
 }
-function localReflection(perspective, works, objects){
+function localReflection(perspective, works, objects, gallery, question){
   const pool=[...perspective, ...works, ...objects];
-  if(!pool.length) return "There's nothing here yet to reflect back to you. Write a little, add a few things — then ask again.";
+  if(!pool.length && !(gallery&&gallery.length)) return "There's nothing here yet to notice. Leave something behind, then come back.";
+  if(!pool.length) return "The pictures are here, but the words haven't caught up yet. Keep going — they will.";
   const pick = pool[Math.floor(Math.random()*pool.length)];
   const label = pick.title || pick.name || '';
   const body = pick.text || pick.note || '';
-  const openers=[
-    `There's a thread running through "${label}" worth sitting with — it says something about what you're drawn to. `,
-    `Looking back at "${label}", a pattern shows up in how you think. `,
-    `One thing keeps surfacing when you write — it's there in "${label}". `
+  const snippet = (body.split(/(?<=[.!?])\s/)[0] || body).trim();
+  const lines=[
+    `Something in "${label}" keeps circling back. Maybe that's the part worth noticing. ${snippet}`,
+    `"${label}" isn't really about what it says — it's about what you chose to say it with.`,
+    `There's a quiet thread through "${label}". You already know what it is.`,
+    `You keep returning to the same shape in different words. "${label}" is one version of it. ${snippet}`
   ];
-  const opener = openers[Math.floor(Math.random()*openers.length)];
-  const snippet = body.split(/(?<=[.!?])\s/)[0] || body;
-  return opener + snippet;
+  return lines[Math.floor(Math.random()*lines.length)];
 }
 function showAiResult(text){
   aiResult.classList.add('show');
   aiResult.innerHTML = text.split(/\s+/).map((w,i)=>`<span class="w" style="animation-delay:${(i*0.045).toFixed(2)}s">${escapeHtml(w)}</span>`).join(' ');
   aiAgainBtn.style.display='inline-block';
+  aiSuggestions.style.display='flex';
 }
-aiAskBtn.addEventListener('click', runAiReflection);
-aiAgainBtn.addEventListener('click', runAiReflection);
+aiAskBtn.addEventListener('click', ()=>runAiReflection());
+aiAgainBtn.addEventListener('click', ()=>runAiReflection());
+aiSuggestions.querySelectorAll('.ai-suggest-btn').forEach(btn=>{
+  btn.addEventListener('click', ()=>runAiReflection(btn.dataset.q));
+});
 
 
 function imagesOf(e){
@@ -1286,8 +1349,14 @@ async function renderAdminList(){
     if(active==='perspective'||active==='works') label=`<b>${escapeHtml(e.title)}</b> &mdash; ${fmtDate(e.date)}`;
     else if(active==='objects') label=`<b>${escapeHtml(e.name)}</b> &mdash; ${escapeHtml(e.category)}`;
     else label=`Image &mdash; ${fmtDate(e.date)}`;
-    return `<div class="admin-list-item"><span class="li-main">${label}</span><span class="del-btn" data-id="${e.id}" data-section="${active}">Remove</span></div>`;
+    return `<div class="admin-list-item"><span class="li-main">${label}</span><span class="li-actions"><span class="edit-btn" data-id="${e.id}">Edit</span><span class="del-btn" data-id="${e.id}" data-section="${active}">Remove</span></span></div>`;
   }).join('');
+  list.querySelectorAll('.edit-btn').forEach(btn=>{
+    btn.addEventListener('click', ()=>{
+      const entry=entries.find(e=>String(e.id)===String(btn.dataset.id));
+      if(entry) openEditModal(active, entry);
+    });
+  });
   list.querySelectorAll('.del-btn').forEach(btn=>{
     btn.addEventListener('click', async ()=>{
       const section=btn.dataset.section, id=btn.dataset.id;
@@ -1298,6 +1367,96 @@ async function renderAdminList(){
       refreshHeroCount();
     });
   });
+}
+
+/* ---------------- edit modal ---------------- */
+const editModal=document.getElementById('editModal');
+const editForm=document.getElementById('editForm');
+const editFieldsContainer=document.getElementById('editFieldsContainer');
+const editMsg=document.getElementById('editMsg');
+let editContext=null;
+const sectionFieldDefs={
+  perspective:[{name:'title',label:'Title',type:'text'},{name:'text',label:'Text',type:'textarea'}],
+  works:[{name:'title',label:'Title',type:'text'},{name:'text',label:'Text',type:'textarea'}],
+  objects:[{name:'name',label:'Name',type:'text'},{name:'category',label:'Category',type:'text'},{name:'note',label:'Note',type:'textarea'}],
+  gallery:[]
+};
+function toDateInputValue(ts){
+  const d=new Date(ts);
+  const off=d.getTimezoneOffset();
+  const local=new Date(d.getTime()-off*60000);
+  return local.toISOString().slice(0,10);
+}
+function openEditModal(section, entry){
+  editContext={ section, id:entry.id, entry };
+  const defs=sectionFieldDefs[section]||[];
+  const hasImages = section!=='objects';
+  let html = defs.map(f=>{
+    const val=escapeHtml(entry[f.name]||'');
+    return f.type==='textarea'
+      ? `<div><label>${f.label}</label><textarea name="${f.name}" rows="4">${val}</textarea></div>`
+      : `<div><label>${f.label}</label><input type="text" name="${f.name}" value="${val}"></div>`;
+  }).join('');
+  html += `<div><label>Date</label><input type="date" name="entryDate" value="${toDateInputValue(entry.date)}"></div>`;
+  if(hasImages){
+    html += `<div><label>Replace ${section==='gallery'?'image':'images'} (optional — leave empty to keep current)</label><input type="file" name="image" accept="image/*" ${section==='gallery'?'':'multiple'}></div>`;
+  }
+  editFieldsContainer.innerHTML = html;
+  editMsg.textContent='';
+  editModal.style.display='flex';
+  requestAnimationFrame(()=>editModal.classList.add('active'));
+}
+function closeEditModal(){
+  editModal.classList.remove('active');
+  setTimeout(()=>{ if(!editModal.classList.contains('active')) editModal.style.display='none'; }, 280);
+}
+document.getElementById('editClose').addEventListener('click', closeEditModal);
+document.getElementById('editBackdrop').addEventListener('click', closeEditModal);
+
+editForm.addEventListener('submit', async e=>{
+  e.preventDefault();
+  if(!editContext) return;
+  const { section, id, entry } = editContext;
+  const fd=new FormData(editForm);
+  const updated={ ...entry };
+  const defs=sectionFieldDefs[section]||[];
+  for(const f of defs){ updated[f.name]=fd.get(f.name); }
+  const dateVal=fd.get('entryDate');
+  if(dateVal){ const parsed=new Date(dateVal+'T12:00:00'); if(!isNaN(parsed.getTime())) updated.date=parsed.getTime(); }
+  if(section!=='objects'){
+    const files=fd.getAll('image').filter(file=>file && file.size>0);
+    if(files.length){ updated.images = await Promise.all(files.slice(0,6).map(file=>compressImage(file))); }
+  }
+  const submitBtn=editForm.querySelector('.submit-btn');
+  submitBtn.disabled=true;
+  editMsg.textContent='Saving…';
+  try{
+    await updateEntry(section, id, updated);
+    showToast('Updated');
+    closeEditModal();
+    renderAdminList();
+    renderAll();
+  }catch(err){
+    console.error(err);
+    editMsg.textContent='Could not save — try again';
+  }finally{
+    submitBtn.disabled=false;
+  }
+});
+async function updateEntry(section, id, entry){
+  if(sb && currentUser){
+    const row={
+      title: entry.title||null, text: entry.text||null, name: entry.name||null,
+      category: entry.category||null, note: entry.note||null,
+      images: entry.images||[], entry_date: entry.date
+    };
+    const { error } = await sb.from('entries').update(row).eq('id', id).eq('user_id', currentUser.id);
+    if(error){ console.error(error); throw error; }
+    return;
+  }
+  let arr=await loadEntries(section);
+  arr=arr.map(e=> String(e.id)===String(id) ? { ...e, ...entry, id:e.id } : e);
+  localStorage.setItem(LKEYS[section], JSON.stringify(arr));
 }
 
 async function handleFormSubmit(section, form, fields){
