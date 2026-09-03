@@ -560,6 +560,269 @@ footer .dot:hover{ opacity:1; transform:scale(1.6); }
   opacity:0; transition:all .4s var(--ease); pointer-events:none;
 }
 .toast.show{ opacity:1; transform:translateX(-50%) translateY(0); }
+
+/* === AI SILK EXPERIENCE REDESIGN === */
+.transition-panel{
+  background:
+    radial-gradient(ellipse 90% 80% at 12% 20%, rgba(126,154,118,.34), transparent 62%),
+    radial-gradient(ellipse 80% 70% at 85% 35%, rgba(213,184,153,.30), transparent 65%),
+    radial-gradient(ellipse 90% 90% at 50% 100%, rgba(75,90,63,.38), transparent 68%),
+    linear-gradient(160deg,#1b2118,#4b5a3f 42%,#b6a58c 72%,#221c18);
+  overflow:hidden;
+}
+.transition-panel::after{
+  content:"";
+  position:absolute;
+  inset:-30%;
+  background:
+    linear-gradient(115deg,
+      transparent 15%,
+      rgba(255,255,255,.12) 38%,
+      rgba(255,255,255,.03) 50%,
+      transparent 70%);
+  filter:blur(35px);
+  transform:translateX(-35%) rotate(8deg);
+  animation:silkLight 18s ease-in-out infinite;
+  pointer-events:none;
+}
+@keyframes silkLight{
+  0%,100%{transform:translateX(-35%) rotate(8deg)}
+  50%{transform:translateX(35%) rotate(8deg)}
+}
+.ai-panel{
+  max-width:900px;
+  padding:70px 50px;
+  border:1px solid rgba(255,255,255,.14);
+  border-radius:40px;
+  background:rgba(255,255,255,.06);
+  backdrop-filter:blur(22px);
+  box-shadow:
+    0 40px 100px rgba(0,0,0,.25),
+    inset 0 1px 0 rgba(255,255,255,.18);
+}
+.ai-eyebrow{
+  color:#e6d7bc;
+  text-shadow:0 0 20px rgba(255,235,190,.35);
+}
+.transition-panel h2{
+  color:#fff7ea;
+  font-size:clamp(28px,5vw,64px);
+  font-style:normal;
+  font-weight:400;
+  line-height:1.2;
+  text-shadow:
+    0 4px 30px rgba(0,0,0,.35),
+    0 0 45px rgba(255,230,190,.15);
+  letter-spacing:-.025em;
+}
+.ai-btn{
+  color:#fffaf0;
+  border-color:rgba(255,245,225,.55);
+  background:rgba(255,255,255,.04);
+  box-shadow:0 0 30px rgba(255,240,210,.12);
+}
+.ai-btn:hover{
+  background:#fff7ea;
+  color:#1b1814;
+  box-shadow:0 10px 50px rgba(255,240,210,.3);
+}
+.ai-suggest-btn{
+  color:#eee0c9;
+  background:rgba(0,0,0,.12);
+  backdrop-filter:blur(10px);
+}
+.ai-suggest-btn:hover{
+  color:#fff;
+  background:rgba(255,255,255,.12);
+}
+.ai-result{
+  color:#fff7ea;
+  text-shadow:0 5px 30px rgba(0,0,0,.35);
+}
+.ai-dots span{
+  background:#e7d3ae;
+}
+
+
+/* === Unified silk atmosphere redesign === */
+:root{
+  --silk-cream:#e8dfd0;
+  --silk-olive:#71805f;
+  --silk-shadow:#1b1917;
+  --silk-glow:rgba(214,194,158,.24);
+}
+
+body{
+  background:
+    radial-gradient(circle at 20% 10%, rgba(113,128,95,.18), transparent 35%),
+    radial-gradient(circle at 80% 80%, rgba(214,194,158,.18), transparent 38%),
+    #171512;
+}
+
+/* all inner pages share the same flowing silk material */
+.view:not(#view-home){
+  position:relative;
+  overflow:hidden;
+  background:
+    radial-gradient(ellipse 70% 50% at 15% 20%, rgba(113,128,95,.28), transparent 65%),
+    radial-gradient(ellipse 65% 55% at 85% 75%, rgba(210,184,145,.22), transparent 68%),
+    linear-gradient(135deg,#171512 0%,#24231d 42%,#332c25 100%);
+}
+
+.view:not(#view-home)::before{
+  content:"";
+  position:absolute;
+  inset:-30%;
+  background:
+    conic-gradient(from 40deg,
+    rgba(255,255,255,.04),
+    rgba(113,128,95,.18),
+    rgba(214,194,158,.1),
+    transparent,
+    rgba(113,128,95,.12));
+  filter:blur(90px);
+  animation:silkPageMove 38s linear infinite;
+  pointer-events:none;
+}
+
+@keyframes silkPageMove{
+  to{transform:rotate(360deg);}
+}
+
+/* directory / third section deeper silk color */
+.directory{
+  background:
+    radial-gradient(circle at 30% 20%,rgba(113,128,95,.25),transparent 40%),
+    radial-gradient(circle at 70% 80%,rgba(205,180,140,.18),transparent 45%),
+    #191714;
+}
+
+.dir-tile{
+  background:
+    linear-gradient(145deg,rgba(255,255,255,.04),rgba(0,0,0,.25)),
+    rgba(25,23,20,.75);
+  backdrop-filter:blur(18px);
+  box-shadow:inset 0 0 80px rgba(255,240,210,.03);
+}
+
+.dir-tile:hover{
+  background:
+    linear-gradient(145deg,rgba(113,128,95,.2),rgba(0,0,0,.3));
+}
+
+/* content cards carry the same atmosphere */
+.section-page,
+.mag-card,
+.work-card,
+.objects-list,
+.gallery-grid{
+  position:relative;
+  z-index:1;
+}
+
+.section-head h1,
+.dir-tile h3,
+.ai-result,
+#aiPrompt{
+  text-shadow:
+    0 0 30px rgba(240,226,198,.18),
+    0 10px 40px rgba(0,0,0,.35);
+}
+
+.section-head p,
+.dir-tile p{
+  color:rgba(235,225,205,.72);
+}
+
+/* softer silk glass panels */
+.mag-card,
+.work-card .frame,
+.obj-row{
+  background:
+    linear-gradient(140deg,rgba(255,255,255,.05),rgba(255,255,255,.01));
+  backdrop-filter:blur(12px);
+  border-color:rgba(235,220,195,.16);
+}
+
+footer{
+  background:linear-gradient(180deg,transparent,rgba(0,0,0,.25));
+}
+
+
+/* final silk harmony refinement */
+body::before{
+ content:""; position:fixed; inset:-20%; z-index:-1; pointer-events:none;
+ background:
+ radial-gradient(ellipse at 20% 20%, rgba(255,255,255,.55), transparent 35%),
+ radial-gradient(ellipse at 80% 30%, rgba(211,224,188,.35), transparent 38%),
+ radial-gradient(ellipse at 50% 90%, rgba(214,192,150,.25), transparent 40%);
+ filter:blur(80px); animation:globalSilkFlow 36s ease-in-out infinite alternate;
+}
+@keyframes globalSilkFlow{from{transform:translate3d(-2%,0,0) scale(1)}to{transform:translate3d(3%,2%,0) scale(1.08)}}
+.hero h1,.transition-panel h2,.dir-tile h3,#aiPrompt{ text-shadow:0 8px 30px rgba(90,70,40,.10);}
+.dir-tile{background:linear-gradient(145deg,rgba(255,255,255,.55),rgba(245,237,220,.42)); backdrop-filter:blur(18px);}
+.dir-tile:hover{background:linear-gradient(145deg,rgba(255,255,255,.78),rgba(235,226,205,.55));}
+.dir-tile:hover h3{color:#3b342b; text-shadow:none;}
+.dir-tile h3{color:#3b342b;}
+.dir-tile p{color:#746858;}
+.ai-suggest-btn:hover{color:#6b624f!important; background:rgba(255,255,255,.55)!important; border-color:rgba(120,105,75,.35)!important;}
+.ai-result{max-width:620px;}
+
+/* === COOL LUMINOUS SILK REFINEMENT === */
+:root{
+ --ink:#f5f7f6;
+ --bone:#26323a;
+ --bone-dim:#61717a;
+ --wine:#607b82;
+ --wine-bright:#89a8ad;
+ --clay:#b8cbd0;
+ --glass:rgba(255,255,255,.48);
+ --line:rgba(72,105,116,.16);
+}
+body{
+ background:
+ radial-gradient(900px 520px at 12% 8%,rgba(180,220,230,.34),transparent 60%),
+ radial-gradient(900px 650px at 88% 20%,rgba(210,225,218,.42),transparent 62%),
+ linear-gradient(120deg,#f7faf9,#eaf2f4 48%,#f6f4ee);
+}
+body:before{
+ content:"";position:fixed;inset:-30%;z-index:-1;
+ background:
+  linear-gradient(110deg,transparent 20%,rgba(255,255,255,.7) 35%,transparent 48%),
+  radial-gradient(40% 35% at 40% 40%,rgba(160,203,214,.22),transparent);
+ animation:silkFlow 22s linear infinite;
+ pointer-events:none;
+}
+@keyframes silkFlow{
+ from{transform:translate3d(-8%,0,0) rotate(0deg)}
+ to{transform:translate3d(8%,3%,0) rotate(8deg)}
+}
+section, .panel, .card, .glass, .ai-box{
+ background:linear-gradient(135deg,rgba(255,255,255,.72),rgba(232,241,243,.42));
+ backdrop-filter:blur(22px);
+ border-color:rgba(90,120,130,.16)!important;
+ box-shadow:0 24px 80px rgba(70,95,105,.12), inset 0 1px 0 rgba(255,255,255,.75);
+}
+h1,h2,h3,.title{
+ text-shadow:0 8px 28px rgba(80,100,110,.12);
+}
+/* remove dirty dark glow */
+.hero:before,.hero:after,.section:before,.section:after{
+ opacity:.18!important;
+ filter:blur(50px);
+}
+/* calmer hover typography */
+.card:hover,.panel:hover{
+ transform:translateY(-4px);
+ box-shadow:0 30px 90px rgba(80,110,120,.18),inset 0 1px 0 rgba(255,255,255,.9);
+}
+.card:hover h1,.card:hover h2,.card:hover h3,.card:hover p{
+ color:#33434b!important;
+ text-shadow:none!important;
+}
+/* AI shorter response visual */
+.ai-response{max-height:90px;overflow:hidden;}
+
 </style>
 </head>
 <body>
@@ -586,7 +849,7 @@ footer .dot:hover{ opacity:1; transform:scale(1.6); }
     <div class="organic-wash" aria-hidden="true"><span class="b1"></span><span class="b2"></span><span class="b3"></span><span class="b4"></span><span class="b5"></span><span class="b6"></span></div>
     <div class="silk-grain" aria-hidden="true"></div>
     <div class="hero">
-      <div class="eyebrow">A Digital Identity</div>
+      <div class="eyebrow">Meet Yourself</div>
       <h1>BERRIE</h1>
       <p class="statement declarations">
         <span class="decl"><b>Perspective</b> — think out loud, on purpose</span>
@@ -633,11 +896,11 @@ footer .dot:hover{ opacity:1; transform:scale(1.6); }
         <button class="ai-btn ai-again" id="aiAgainBtn" style="display:none;">Reflect Again</button>
         <div class="ai-suggestions" id="aiSuggestions">
           <button class="ai-suggest-btn" data-q="What have I been drawn to lately?">What have I been drawn to lately?</button>
-          <button class="ai-suggest-btn" data-q="What keeps appearing in my Berrie?">What keeps appearing in my Berrie?</button>
+          <button class="ai-suggest-btn" data-q="What keeps appearing in my BERRIE?">What keeps appearing in my BERRIE?</button>
           <button class="ai-suggest-btn" data-q="Show me something I might have forgotten.">Show me something I might have forgotten.</button>
           <button class="ai-suggest-btn" data-q="What has changed since I started?">What has changed since I started?</button>
           <button class="ai-suggest-btn" data-q="Connect three things I wouldn't have connected.">Connect three things I wouldn&rsquo;t have connected.</button>
-          <button class="ai-suggest-btn" data-q="Tell me a story hidden in my Berrie.">Tell me a story hidden in my Berrie.</button>
+          <button class="ai-suggest-btn" data-q="Tell me a story hidden in my BERRIE.">Tell me a story hidden in my BERRIE.</button>
         </div>
       </div>
     </div>
@@ -1176,21 +1439,21 @@ async function runAiReflection(question){
       method:"POST", headers, body: JSON.stringify({
         material, name: currentUser.name, question: question || null,
         tone: 'gentle, quiet, a little mysterious',
-        style: 'Keep it short — 2 to 4 sentences. No long analysis, no lists. Speak like someone noticing something true about a person, not explaining it. Focus on their inner world, not the objects themselves.'
+        style: 'Keep it very short — 1 to 2 sentences. No analysis, no lists. Speak like a quiet observation about the person, not the objects.'
       }), signal: ctrl.signal
     });
     clearTimeout(timer);
     if(!response.ok) throw new Error('server responded '+response.status);
     const data = await response.json();
     const text = (data.text||'').trim();
-    finish(text || localReflection(perspective, works, objects, gallery, question));
+    finish(limitAiText(text || localReflection(perspective, works, objects, gallery, question)));
   }catch(err){
     console.error(err);
     const perspective=(await loadEntries('perspective')).sort((a,b)=>b.date-a.date).slice(0,6);
     const works=(await loadEntries('works')).sort((a,b)=>b.date-a.date).slice(0,4);
     const objects=(await loadEntries('objects')).sort((a,b)=>b.date-a.date).slice(0,6);
     const gallery=(await loadEntries('gallery')).sort((a,b)=>b.date-a.date).slice(0,6);
-    finish(localReflection(perspective, works, objects, gallery, question));
+    finish(limitAiText(localReflection(perspective, works, objects, gallery, question)));
   }
 }
 function localReflection(perspective, works, objects, gallery, question){
@@ -1208,6 +1471,10 @@ function localReflection(perspective, works, objects, gallery, question){
     `You keep returning to the same shape in different words. "${label}" is one version of it. ${snippet}`
   ];
   return lines[Math.floor(Math.random()*lines.length)];
+}
+function limitAiText(text){
+  const parts=(text||"").split(/(?<=[.!?])\s+/);
+  return parts.slice(0,2).join(" ").slice(0,260);
 }
 function showAiResult(text){
   aiResult.classList.add('show');
@@ -1536,5 +1803,141 @@ handleFormSubmit('works', document.getElementById('formWorks'), ['title','text',
 handleFormSubmit('objects', document.getElementById('formObjects'), ['name','category','note']);
 handleFormSubmit('gallery', document.getElementById('formGallery'), ['image']);
 </script>
+
+<style>
+/* === Bright flowing silk master atmosphere === */
+:root{
+ --bright-silk-1:#faf5eb;
+ --bright-silk-2:#e9ddc7;
+ --bright-silk-3:#c8c9a8;
+ --bright-silk-green:#8fa27b;
+}
+body{
+ background:#f7f1e6;
+ color:#29251e;
+}
+.view:not(#view-home){
+ background:
+ radial-gradient(ellipse 65% 45% at 12% 15%,rgba(255,255,255,.95),transparent 60%),
+ radial-gradient(ellipse 55% 55% at 88% 70%,rgba(204,216,172,.42),transparent 65%),
+ radial-gradient(ellipse 80% 60% at 45% 100%,rgba(218,193,154,.5),transparent 70%),
+ linear-gradient(135deg,#fbf6ed,#e8dcc7 45%,#d8d5bd 100%);
+ color:#29251e;
+}
+.view:not(#view-home)::before{
+ background:conic-gradient(from 90deg,rgba(255,255,255,.35),rgba(150,170,120,.18),rgba(230,210,175,.3),transparent,rgba(255,255,255,.45));
+ filter:blur(100px);
+ animation:silkPageMove 42s linear infinite;
+}
+.directory{
+ background:
+ radial-gradient(circle at 20% 20%,rgba(255,255,255,.85),transparent 35%),
+ radial-gradient(circle at 80% 80%,rgba(166,180,125,.32),transparent 45%),
+ linear-gradient(145deg,#f8f0df,#e4d8bf);
+}
+.dir-tile{
+ background:rgba(255,250,240,.45);
+ color:#302a20;
+ border-color:rgba(70,60,40,.12);
+ box-shadow:0 30px 80px rgba(130,110,80,.12),inset 0 1px 0 rgba(255,255,255,.7);
+ backdrop-filter:blur(20px);
+}
+.dir-tile:hover{
+ background:rgba(255,255,255,.65);
+ box-shadow:0 40px 100px rgba(130,110,80,.2);
+}
+.dir-tile h3{color:#30291f;}
+.dir-tile p,.section-head p{color:#665c4d;}
+.section-page{
+ background:transparent;
+}
+.mag-card,.work-card .frame,.obj-row{
+ background:rgba(255,252,245,.55);
+ border-color:rgba(70,60,40,.14);
+ box-shadow:0 25px 70px rgba(120,100,70,.12);
+}
+.transition-panel{
+ background:
+ radial-gradient(ellipse 70% 50% at 20% 15%,rgba(255,255,255,.9),transparent 60%),
+ radial-gradient(ellipse 60% 60% at 80% 80%,rgba(156,174,112,.35),transparent 65%),
+ linear-gradient(140deg,#faf4e8,#dcd1b7);
+}
+.transition-panel::after{
+ background:linear-gradient(115deg,transparent 15%,rgba(255,255,255,.55) 42%,rgba(255,255,255,.08) 55%,transparent 75%);
+}
+.ai-panel{
+ background:rgba(255,252,244,.48);
+ border-color:rgba(80,70,50,.14);
+ box-shadow:0 40px 100px rgba(120,100,70,.18),inset 0 1px 0 white;
+}
+.transition-panel h2{
+ color:#332c21;
+ text-shadow:0 10px 35px rgba(120,90,50,.15);
+}
+.ai-eyebrow,.ai-suggest-btn{color:#6e7652;}
+.ai-btn{color:#332c21;border-color:rgba(50,40,25,.35);}
+.ai-btn:hover{background:#332c21;color:#fff7ea;}
+
+/* === FINAL AQUA SILK SYSTEM === */
+:root{
+ --ink:#eaf4f2;
+ --bone:#24353a;
+ --bone-dim:#607477;
+ --clay:#789b98;
+ --wine:#4f8d86;
+ --wine-bright:#3e7772;
+ --glass:rgba(255,255,255,.42);
+ --line:rgba(65,110,108,.16);
+}
+body{
+ background:
+ radial-gradient(circle at 20% 10%,rgba(185,235,226,.55),transparent 35%),
+ radial-gradient(circle at 80% 30%,rgba(185,215,235,.5),transparent 38%),
+ linear-gradient(135deg,#f4fbfa,#dceeed 45%,#eef5f6);
+}
+body:before{
+ content:"";position:fixed;inset:-20%;z-index:-1;
+ background:linear-gradient(120deg,transparent 20%,rgba(255,255,255,.65) 45%,transparent 65%);
+ animation:silkFlow 18s linear infinite;
+ pointer-events:none;
+}
+@keyframes silkFlow{from{transform:translateX(-15%) rotate(0deg)}to{transform:translateX(15%) rotate(0deg)}}
+.hero,.section-page,.transition-panel{background:rgba(235,247,245,.32)!important;}
+.hero h1,.section-head h1,.transition-panel h2{
+ text-shadow:0 4px 18px rgba(50,90,90,.10)!important;
+ color:#263b3d!important;
+}
+.section-head p,.hero .statement{color:#607477!important;text-shadow:none!important;}
+/* clean glass panels */
+.card,.glass,.panel,.ai-box,.dir-tile,.content-modal .cm-panel,.auth-panel{
+ background:rgba(255,255,255,.52)!important;
+ backdrop-filter:blur(24px);
+ border:1px solid rgba(255,255,255,.65)!important;
+ box-shadow:0 25px 70px rgba(60,105,105,.12), inset 0 1px 0 rgba(255,255,255,.8)!important;
+}
+/* hover: calm not glowing */
+.dir-tile:hover,.card:hover{
+ transform:translateY(-5px)!important;
+ box-shadow:0 30px 80px rgba(60,105,105,.18)!important;
+}
+.dir-tile:hover h3,.card:hover h3{color:#29484a!important;text-shadow:none!important;}
+/* modal unified */
+.cm-backdrop,.auth-backdrop,.lightbox-backdrop{
+ background:rgba(20,55,58,.28)!important;
+ backdrop-filter:blur(12px);
+}
+.cm-panel,.auth-panel{
+ border-radius:28px!important;
+}
+/* AI shorter and elegant */
+.ai-result{
+ max-width:420px!important;
+ line-height:1.8!important;
+ color:#30484b!important;
+}
+.ai-result .w{animation-duration:.45s!important;}
+.ai-suggest-btn:hover{color:#28484b!important;background:rgba(255,255,255,.8)!important;}
+
+</style>
 </body>
 </html>
