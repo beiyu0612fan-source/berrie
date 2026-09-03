@@ -823,6 +823,90 @@ h1,h2,h3,.title{
 /* AI shorter response visual */
 .ai-response{max-height:90px;overflow:hidden;}
 
+
+
+/* === HOME COLOR LOCK + INNER PAGES HARMONIZATION ===
+/* Keep original home atmosphere untouched. Only extend the four inner sections. */
+.view:not(#view-home),
+#view-perspective,
+#view-objects,
+#view-gallery,
+#view-works{
+  position:relative;
+  overflow:hidden;
+  background:
+    radial-gradient(80% 70% at 15% 15%, rgba(75,90,63,.34), transparent 65%),
+    radial-gradient(70% 60% at 85% 75%, rgba(122,148,102,.28), transparent 68%),
+    linear-gradient(150deg,#171b16 0%,#35463a 45%,#6f806d 75%,#26352f 100%);
+}
+
+.view:not(#view-home)::before{
+ content:"";
+ position:absolute;
+ inset:-35%;
+ background:
+  conic-gradient(from 90deg,
+   rgba(255,255,255,.08),
+   rgba(120,148,110,.22),
+   rgba(75,90,63,.18),
+   transparent,
+   rgba(210,190,150,.12));
+ filter:blur(100px);
+ animation:innerSilkFlow 42s linear infinite;
+ pointer-events:none;
+}
+@keyframes innerSilkFlow{to{transform:rotate(360deg)}}
+
+/* glass cards inherit home silk language */
+.mag-card,.work-card .frame,.obj-row,.gallery-item,
+.cm-panel,.auth-panel{
+ background:linear-gradient(135deg,rgba(255,255,255,.09),rgba(75,90,63,.18));
+ backdrop-filter:blur(20px);
+ border-color:rgba(220,230,215,.18)!important;
+ box-shadow:0 30px 90px rgba(0,0,0,.18), inset 0 1px rgba(255,255,255,.18);
+}
+
+/* readable luxury typography */
+.section-head h1,.dir-tile h3,.mag-card h3,.work-card h3,.obj-row h3{
+ color:#f2f4ee;
+ text-shadow:0 8px 30px rgba(0,0,0,.35),0 0 25px rgba(220,240,220,.12);
+}
+.section-head p,.mag-card p,.obj-row .o-note,.dir-tile p{
+ color:rgba(235,240,228,.78);
+}
+
+/* silky hover */
+.mag-card:hover,.work-card:hover,.obj-row:hover,.gallery-item:hover{
+ transform:translateY(-5px);
+ transition:transform .45s cubic-bezier(.16,.84,.44,1),box-shadow .45s ease;
+ box-shadow:0 35px 100px rgba(0,0,0,.25),inset 0 1px rgba(255,255,255,.25);
+}
+
+/* crystal cursor */
+#cursor{
+ width:26px;
+ height:26px;
+ border:1px solid rgba(255,255,255,.75);
+ background:radial-gradient(circle,rgba(255,255,255,.35),rgba(130,190,180,.12) 45%,transparent 70%);
+ box-shadow:0 0 22px rgba(160,220,210,.65), inset 0 0 12px rgba(255,255,255,.35);
+ backdrop-filter:blur(4px);
+ mix-blend-mode:normal;
+}
+#cursor.hover{
+ width:62px;
+ height:62px;
+ background:rgba(180,230,220,.18);
+ border-color:rgba(255,255,255,.9);
+ box-shadow:0 0 45px rgba(130,220,210,.8), inset 0 0 25px rgba(255,255,255,.4);
+}
+#cursor-dot{
+ width:5px;
+ height:5px;
+ background:#e8ffff;
+ box-shadow:0 0 14px #b8ffff;
+ mix-blend-mode:normal;
+}
+
 </style>
 </head>
 <body>
