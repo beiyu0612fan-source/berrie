@@ -1295,6 +1295,51 @@ body::before{
 #cursor-dot{mix-blend-mode:normal!important;background:#5b919b!important;}
 
 </style>
+
+<style id="berrie-scroll-performance-final">
+/* =========================================================
+   SEA-SALT GLASS — SCROLL / POINTER PERFORMANCE
+   Keep the visual language; stop expensive paint work while scrolling.
+   ========================================================= */
+html{scroll-behavior:auto!important;}
+body{overscroll-behavior-x:none;}
+/* Main home wash: fewer simultaneous blur/morph calculations. */
+.organic-wash span{animation:none!important;will-change:auto!important;}
+.organic-wash .b1{transform:translate3d(-1%,1%,0) scale(1.04);}
+.organic-wash .b2{transform:translate3d(1%,0,0) scale(.98);}
+.organic-wash .b3{transform:translate3d(0,1%,0) scale(1.02);}
+.organic-wash .b4{transform:translate3d(0,0,0);}
+.organic-wash .b5{transform:translate3d(1%,-1%,0) scale(1.02);}
+.organic-wash .b6{transform:translate3d(-1%,0,0) scale(.99);}
+/* Keep one subtle silk layer, but don't animate several fixed blurred layers together. */
+body::before{animation-duration:52s!important;will-change:transform;}
+#nav{backdrop-filter:blur(10px)!important;-webkit-backdrop-filter:blur(10px)!important;}
+/* Scrolling should be compositing-friendly. */
+.view,.hero,#home,.transition-panel,.directory{transform:translateZ(0);backface-visibility:hidden;}
+.silk-grain{opacity:.28!important;}
+/* Glass remains, but large collections don't each trigger a heavy backdrop repaint. */
+.dir-tile,.mag-card,.work-card .frame,.gallery-item{backdrop-filter:blur(12px)!important;-webkit-backdrop-filter:blur(12px)!important;}
+/* Pointer: no delayed positional transition. Only the ring's size reacts. */
+#cursor{transition:width .16s var(--ease),height .16s var(--ease),background .16s ease,border-color .16s ease,box-shadow .16s ease!important;will-change:transform;}
+#cursor-dot{will-change:transform;}
+/* While the wheel/touch scroll is moving, pause paint-heavy ambient effects. */
+html.is-scrolling .organic-wash span,
+html.is-scrolling body::before,
+html.is-scrolling .transition-panel::before,
+html.is-scrolling .transition-panel::after,
+html.is-scrolling .transition-panel .glow,
+html.is-scrolling .view:not(#view-home)::before{animation-play-state:paused!important;}
+html.is-scrolling .dir-tile,
+html.is-scrolling .mag-card,
+html.is-scrolling .work-card .frame,
+html.is-scrolling .gallery-item{backdrop-filter:none!important;-webkit-backdrop-filter:none!important;}
+/* Don't run hover lifting while the page is in motion. */
+html.is-scrolling .dir-tile:hover,
+html.is-scrolling .mag-card:hover,
+html.is-scrolling .work-card:hover .frame,
+html.is-scrolling .gallery-item:hover{transform:none!important;box-shadow:0 18px 55px rgba(52,100,111,.10),inset 0 1px 0 rgba(255,255,255,.84)!important;}
+</style>
+
 </head>
 <body>
 
@@ -2484,5 +2529,29 @@ body:before{
   });
 })();
 </script>
+
+<script>
+/* Lightweight scroll state: pause expensive visual effects only during active scrolling. */
+(()=>{
+  const root=document.documentElement;
+  let timer=0;
+  let lastY=window.scrollY;
+  let ticking=false;
+  window.addEventListener('scroll',()=>{
+    if(!ticking){
+      ticking=true;
+      requestAnimationFrame(()=>{
+        const y=window.scrollY;
+        lastY=y;
+        root.classList.add('is-scrolling');
+        ticking=false;
+      });
+    }
+    clearTimeout(timer);
+    timer=setTimeout(()=>root.classList.remove('is-scrolling'),140);
+  },{passive:true});
+})();
+</script>
+
 </body>
 </html>
